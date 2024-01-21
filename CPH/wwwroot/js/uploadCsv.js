@@ -123,29 +123,6 @@
             return rows;
         },
         /**
-        * Removes the U.S Total column from the dataset
-        * @param {Array} rows
-        */
-        removeUSTotal(rows) {
-            // Loops through the rows looking for a matching value with the iterated column value
-            // Create an index that is decremented from within the following loop
-            let rowIndex = rows.length;
-            while (rowIndex-- > 0) {
-                // Holds the iterated row data
-                let row = rows[rowIndex];
-                // Holds iterated county column value data
-                let thisKey = row.split(",")[4] === undefined ? undefined : row.split(",")[4].toUpperCase();
-                if (thisKey == "UNITED STATES") {
-                    // Removes the matched non-county data from the CSV array
-                    rows.splice(rowIndex, 1);
-                    // Removes the item from the blacklist, assuming that items key this list
-                    if (thisKey !== undefined) {
-                    }
-                }
-            };
-            return rows;
-        },
-        /**
         * Retrieves the user uploaded file, and validates that it is a csv file
         * @param {any} event
         */
@@ -191,9 +168,6 @@
 
                 // Remove the second row of the CSV
                 rows.splice(1, 1);
-
-                // Removes the U.S from the dataset
-                this.removeUSTotal(rows);
 
                 // Removes the last the last item in the array
                 rows = this.removeTail(rows);
